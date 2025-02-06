@@ -1,6 +1,8 @@
-import { StyleSheet, ScrollView, FlatList, SectionList, View } from 'react-native'
+import { StyleSheet, ScrollView, FlatList, SectionList,Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import UserCard from './components/UserCard'
+import { useNavigation } from '@react-navigation/native'
+
 
 const users = [
     {
@@ -236,10 +238,18 @@ const users = [
 ]
 
 const Home = () => {
+    const navigation = useNavigation()
     return (
         <ScrollView>
             <View className='gap-4 p-5'>
+            <TouchableOpacity onPress={() => {navigation.navigate("Todo")}} className='bg-green-600 py-4'>
+                    <Text className="text-center text-white text-xl">
+                        Go to Todos
+                    </Text>
+                </TouchableOpacity>
+
                 {users.map(user => <UserCard user={user} />)}
+
             </View>
 
             {/* <FlatList

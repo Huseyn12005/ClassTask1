@@ -8,12 +8,7 @@ const Todo = () => {
 
     const getTodos = async () => {
         try {
-            const response = await fetch("http://172.20.30.67:5001/cards", {
-                method: "GET",
-                headers: {
-                    "Accept": "application/json"
-                }
-            });
+            const response = await fetch("http://172.20.30.67:5001/cards");
             if (response.ok) {
                 const data = await response.json();
                 setTodos(data);
