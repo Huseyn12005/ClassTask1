@@ -6,6 +6,8 @@ import { SafeAreaProvider,SafeAreaView } from "react-native-safe-area-context"
 import Login from "./src/screens/login/Login"
 import Todo from "./src/screens/todo/Todo"
 import Navigation from "./src/stacks/Navigation"
+import Gallery from "./src/screens/gallery/Gallery"
+import HomeStack from "./src/stacks/HomeStack"
 
 const App = () => {
   return (
