@@ -1,276 +1,114 @@
-import { StyleSheet, ScrollView, FlatList, SectionList,Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
-import UserCard from './components/UserCard'
-import { useNavigation } from '@react-navigation/native'
-
-
-const users = [
-    {
-        id: 1,
-        name: "Leanne Graham",
-        username: "Bret",
-        email: "Sincere@april.biz",
-        address: {
-            street: "Kulas Light",
-            suite: "Apt. 556",
-            city: "Gwenborough",
-            zipcode: "92998-3874",
-            geo: {
-                lat: "-37.3159",
-                lng: "81.1496"
-            }
-        },
-        phone: "1-770-736-8031 x56442",
-        website: "hildegard.org",
-        company: {
-            name: "Romaguera-Crona",
-            catchPhrase: "Multi-layered client-server neural-net",
-            bs: "harness real-time e-markets"
-        }
-    },
-    {
-        id: 2,
-        name: "Ervin Howell",
-        username: "Antonette",
-        email: "Shanna@melissa.tv",
-        address: {
-            street: "Victor Plains",
-            suite: "Suite 879",
-            city: "Wisokyburgh",
-            zipcode: "90566-7771",
-            geo: {
-                lat: "-43.9509",
-                lng: "-34.4618"
-            }
-        },
-        phone: "010-692-6593 x09125",
-        website: "anastasia.net",
-        company: {
-            name: "Deckow-Crist",
-            catchPhrase: "Proactive didactic contingency",
-            bs: "synergize scalable supply-chains"
-        }
-    },
-    {
-        id: 3,
-        name: "Clementine Bauch",
-        username: "Samantha",
-        email: "Nathan@yesenia.net",
-        address: {
-            street: "Douglas Extension",
-            suite: "Suite 847",
-            city: "McKenziehaven",
-            zipcode: "59590-4157",
-            geo: {
-                lat: "-68.6102",
-                lng: "-47.0653"
-            }
-        },
-        phone: "1-463-123-4447",
-        website: "ramiro.info",
-        company: {
-            name: "Romaguera-Jacobson",
-            catchPhrase: "Face to face bifurcated interface",
-            bs: "e-enable strategic applications"
-        }
-    },
-    {
-        id: 4,
-        name: "Patricia Lebsack",
-        username: "Karianne",
-        email: "Julianne.OConner@kory.org",
-        address: {
-            street: "Hoeger Mall",
-            suite: "Apt. 692",
-            city: "South Elvis",
-            zipcode: "53919-4257",
-            geo: {
-                lat: "29.4572",
-                lng: "-164.2990"
-            }
-        },
-        phone: "493-170-9623 x156",
-        website: "kale.biz",
-        company: {
-            name: "Robel-Corkery",
-            catchPhrase: "Multi-tiered zero tolerance productivity",
-            bs: "transition cutting-edge web services"
-        }
-    },
-    {
-        id: 5,
-        name: "Chelsey Dietrich",
-        username: "Kamren",
-        email: "Lucio_Hettinger@annie.ca",
-        address: {
-            street: "Skiles Walks",
-            suite: "Suite 351",
-            city: "Roscoeview",
-            zipcode: "33263",
-            geo: {
-                lat: "-31.8129",
-                lng: "62.5342"
-            }
-        },
-        phone: "(254)954-1289",
-        website: "demarco.info",
-        company: {
-            name: "Keebler LLC",
-            catchPhrase: "User-centric fault-tolerant solution",
-            bs: "revolutionize end-to-end systems"
-        }
-    },
-    {
-        id: 6,
-        name: "Mrs. Dennis Schulist",
-        username: "Leopoldo_Corkery",
-        email: "Karley_Dach@jasper.info",
-        address: {
-            street: "Norberto Crossing",
-            suite: "Apt. 950",
-            city: "South Christy",
-            zipcode: "23505-1337",
-            geo: {
-                lat: "-71.4197",
-                lng: "71.7478"
-            }
-        },
-        phone: "1-477-935-8478 x6430",
-        website: "ola.org",
-        company: {
-            name: "Considine-Lockman",
-            catchPhrase: "Synchronised bottom-line interface",
-            bs: "e-enable innovative applications"
-        }
-    },
-    {
-        id: 7,
-        name: "Kurtis Weissnat",
-        username: "Elwyn.Skiles",
-        email: "Telly.Hoeger@billy.biz",
-        address: {
-            street: "Rex Trail",
-            suite: "Suite 280",
-            city: "Howemouth",
-            zipcode: "58804-1099",
-            geo: {
-                lat: "24.8918",
-                lng: "21.8984"
-            }
-        },
-        phone: "210.067.6132",
-        website: "elvis.io",
-        company: {
-            name: "Johns Group",
-            catchPhrase: "Configurable multimedia task-force",
-            bs: "generate enterprise e-tailers"
-        }
-    },
-    {
-        id: 8,
-        name: "Nicholas Runolfsdottir V",
-        username: "Maxime_Nienow",
-        email: "Sherwood@rosamond.me",
-        address: {
-            street: "Ellsworth Summit",
-            suite: "Suite 729",
-            city: "Aliyaview",
-            zipcode: "45169",
-            geo: {
-                lat: "-14.3990",
-                lng: "-120.7677"
-            }
-        },
-        phone: "586.493.6943 x140",
-        website: "jacynthe.com",
-        company: {
-            name: "Abernathy Group",
-            catchPhrase: "Implemented secondary concept",
-            bs: "e-enable extensible e-tailers"
-        }
-    },
-    {
-        id: 9,
-        name: "Glenna Reichert",
-        username: "Delphine",
-        email: "Chaim_McDermott@dana.io",
-        address: {
-            street: "Dayna Park",
-            suite: "Suite 449",
-            city: "Bartholomebury",
-            zipcode: "76495-3109",
-            geo: {
-                lat: "24.6463",
-                lng: "-168.8889"
-            }
-        },
-        phone: "(775)976-6794 x41206",
-        website: "conrad.com",
-        company: {
-            name: "Yost and Sons",
-            catchPhrase: "Switchable contextually-based project",
-            bs: "aggregate real-time technologies"
-        }
-    },
-    {
-        id: 10,
-        name: "Clementina DuBuque",
-        username: "Moriah.Stanton",
-        email: "Rey.Padberg@karina.biz",
-        address: {
-            street: "Kattie Turnpike",
-            suite: "Suite 198",
-            city: "Lebsackbury",
-            zipcode: "31428-2261",
-            geo: {
-                lat: "-38.2386",
-                lng: "57.2232"
-            }
-        },
-        phone: "024-648-3804",
-        website: "ambrose.net",
-        company: {
-            name: "Hoeger LLC",
-            catchPhrase: "Centralized empowering task-force",
-            bs: "target end-to-end models"
-        }
-    }
-]
+import { View, Text, Image, TouchableOpacity, FlatList,ScrollView,Dimensions } from 'react-native';
+import React, { useState,useEffect } from 'react';
+import {useNavigation} from '@react-navigation/native';
+import Logo from '../../assets/Logonetflix.png';
 
 const Home = () => {
-    const navigation = useNavigation()
-    return (
-        <ScrollView>
-            <View className='gap-4 p-5'>
-            <TouchableOpacity onPress={() => {navigation.navigate("Todo")}} className='bg-green-600 py-4'>
-                    <Text className="text-center text-white text-xl">
-                        Go to Todos
-                    </Text>
-                </TouchableOpacity>
+  const navigation = useNavigation();
+  const [featured, setFeatured] = useState(null);
+  const [movies, setMovies] = useState([]);
+  const [tvShows, setTvShows] = useState([]);
 
-                {users.map(user => <UserCard user={user} />)}
+  const { width, height } = Dimensions.get("window");
+  
+  useEffect(() => {
+    const fetchTrendingData = async () => {
+        try {
+            const movieRes = await fetch("http://192.168.1.73:5001/api/v1/movie/trending");
+            const tvRes = await fetch("http://192.168.1.73:5001/api/v1/tv/trending");
 
-            </View>
+            const movieData = await movieRes.json();
+            const tvData = await tvRes.json();
 
-            {/* <FlatList
-                contentContainerStyle={{gap: 16, padding: 20}}
-                scrollEnabled={false}
-                data={users}
-                renderItem={({item}) => <UserCard user={item} />}
-                keyExtractor={user => user.id}
-            /> */}
+            console.log("Movies Data:", movieData);  
+            console.log("TV Shows Data:", tvData);
 
-            {/* <FlatList
-                contentContainerStyle={{gap: 16, padding: 20}}
-                scrollEnabled={false}
-                data={users}
-                renderItem={({item}) => <UserCard user={item} />}
-                keyExtractor={user => user.id}
-            /> */}
-        </ScrollView>
-    )
-}
+            setMovies(movieData.content || []);
+            setTvShows(tvData.content || []);
 
-export default Home
+            if (movieData.content && movieData.content.length > 0) {
+                const randomMovie = movieData.content[Math.floor(Math.random() * movieData.content.length)];
+                console.log("Featured Movie:", randomMovie);
+                setFeatured(randomMovie); 
+            }
+       
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
 
-const styles = StyleSheet.create({})
+    fetchTrendingData();
+}, []);
+  const handleNavigation = (item, type) => {
+    navigation.push("Details", { id: item.id, type });
+  };
+
+  return (
+    <ScrollView className="flex-1 bg-black ">
+      <Image source={Logo} className="w-25 h-10 right-20 mt-5 mb-5 " resizeMode="contain" />
+
+      {featured && (
+        <View className=" items-center">
+            
+          <Image
+            
+            source={{ uri: `https://image.tmdb.org/t/p/w500${featured.poster_path}` }} 
+             style={{ width: 260, height: 360, position: "absolute",justifyContent: 'center',flexDirection: 'row',alignItems: 'center' }}
+             onError={(e) => console.log("Image Load Error:", e.nativeEvent)}
+        />
+
+          <View className="flex-row justify-center top-24 pt-24 mt-24">
+            <TouchableOpacity
+              className="bg-white px-10 py-4 rounded-xl mr-2 mt-5"
+              onPress={() => handleNavigation(featured, featured.media_type)}
+            >
+              <Text className="text-black text-lg font-bold">Play</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className="bg-gray-700  px-10 py-4 rounded-xl mt-5"
+              onPress={() => handleNavigation(featured, featured.media_type)}
+            >
+              <Text className="text-white text-lg font-bold">More Info</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+
+      <View className='pt-24 mt-24'>
+      <Text className="text-white text-3xl mt-5 mb-5">Trending Movies</Text>
+      <FlatList
+        data={movies}
+        horizontal
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity className="pr-5" onPress={() => handleNavigation(item, "movie")}>
+          <Image
+            source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }} 
+            style={{ width: 150, height: 225 }}
+            onError={(e) => console.log("Image Load Error:", e.nativeEvent)}
+            />
+          </TouchableOpacity>
+        )}
+      />
+
+      <Text className="text-white text-3xl mt-10 mb-5">Popular TV Shows</Text>
+      <FlatList
+        data={tvShows}
+        horizontal
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity className="pr-5" onPress={() => handleNavigation(item, "tv")}>
+            <Image
+                source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }} 
+                style={{ width: 150, height: 225 }}
+                onError={(e) => console.log("Image Load Error:", e.nativeEvent)}
+            />
+          </TouchableOpacity>
+        )}
+      />
+      </View>
+    </ScrollView>
+  );
+};
+
+export default Home;
